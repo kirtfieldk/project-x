@@ -7,6 +7,6 @@ admin.initializeApp({
   databaseURL: "https://project-x-ba483.firebaseio.com"
 });
 
-const dataBase = admin.firestore();
+const database = admin.firestore();
 
-module.exports = { admin, dataBase };
+module.exports = { admin, database };
