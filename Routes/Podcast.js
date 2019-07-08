@@ -33,4 +33,19 @@ module.exports = app => {
       return res.status(500).json({ err: err.code });
     }
   });
+
+  // Deleteing a podcast
+  app.delete("/podcast/:postId", async (req, res) => {
+    try {
+      const response = await database.doc(`Podcast/${req.params.postId}`).get();
+      const title = response.data().title;
+      if (!response.exists)
+        return res.status(404).json({ msg: "Post not found" });
+      await database.doc(`Podcast/${req.params.postId}`).delete();
+      return res.status(200).json({ msg: `Post ${title} deleted` });
+    } catch (err) {
+      console.log(err);
+      return res.status(404).json({ err: err.code });
+    }
+  });
 };
