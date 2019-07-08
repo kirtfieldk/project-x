@@ -35,7 +35,7 @@ module.exports = app => {
   });
 
   // Deleteing a podcast
-  app.delete("/podcast/:postId", async (req, res) => {
+  app.delete("/podcast/:postId", auth, async (req, res) => {
     try {
       const response = await database.doc(`Podcast/${req.params.postId}`).get();
       const title = response.data().title;
