@@ -3,6 +3,7 @@ const auth = require("../Helper/auth");
 module.exports = app => {
   // Adding a email to newsletter
 
+  // getting all users
   app.get("/newsletter", auth, async (req, res) => {
     try {
       let newsletterArray = [];
@@ -20,6 +21,7 @@ module.exports = app => {
       return res.status(404).json({ err: err.code });
     }
   });
+  //adding email address
   app.post("/newsletter", auth, async (req, res) => {
     try {
       const { email } = req.body;
@@ -46,23 +48,16 @@ module.exports = app => {
       return res.status(502).json({ err });
     }
   });
-  app.delete("/newsletter/:email", async (req, res) => {
+  // Deleting an email address
+  app.delete("/newsletter/:id", auth, async (req, res) => {
     try {
-      const email = await database
-        .collection("Newsletter")
-        .where("email", "==", req.params.email)
-        .get();
-      // if (!email.empty)
-      //   return res.status(404).json({ msg: "Email not in database" });
-      email.forEach(async doc => {
-        await database
-          .doc(`Newsletter/${doc.id}`)
-          // .get()
-          .delete();
-          console.log(doc.id);
-      });
-      return res.status(200).json({ msg: `${req.params.email} deleted` });
+      const email = await database.doc(`Newsletter/${req.params.id}`).get();
+      if (!email.exists)
+        return res.status(404).json({ msg: "Email not in database" });
+      await database.doc(`Newsletter/${req.params.id}`).delete();
+      return res.status(200).json({ msg: `${req.params.id} deleted` });
     } catch (err) {
+      console.log(err);
       return res.status(404).json({ err });
     }
   });
