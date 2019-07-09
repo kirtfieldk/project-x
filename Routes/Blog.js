@@ -45,15 +45,16 @@ module.exports = app => {
     }
   });
   // Deleting Post
-  app.delete("/blogpost/:id", async (req, res) => {
+  app.delete("/blogpost/:id", auth, async (req, res) => {
     try {
       const postDelete = await database.doc(`Blog-post/${req.params.id}`).get();
       console.log(postDelete.exists);
-      if (postDelete.exist == true) {
-        await database.doc(`Blog-post/${req.params.id}`).delete();
-        return res.status(202).json({ msg: `Deleted ${req.params.id}` });
+      if (postDelete.exists === false) {
+        return res.status(404).json({ msg: "Post not found" });
       }
-      return res.status(404).json({ msg: "Post not found" });
+
+      await database.doc(`Blog-post/${req.params.id}`).delete();
+      return res.status(202).json({ msg: `Deleted ${req.params.id}` });
     } catch (err) {
       console.log(err);
       return res.status(400).json({ err: err.code });
