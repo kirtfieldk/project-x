@@ -12,12 +12,12 @@ module.exports = app => {
 
   app.post("/uploadimg", async (req, res) => {
     try {
-      const busboy = new BusBoy({ headers: req.headers });
-
       let imageToBeUploaded = {};
       let imageFileName;
+      const busboy = new BusBoy({ headers: req.headers });
+      //    Above is init vars
       busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
-        console.log(fieldname, file, filename, encoding, mimetype);
+        // console.log(fieldname, file, filename, encoding, mimetype);
         if (mimetype !== "image/jpeg" && mimetype !== "image/png") {
           return res.status(400).json({ error: "Wrong file type submitted" });
         }
@@ -29,12 +29,18 @@ module.exports = app => {
         imageFileName = `${Math.round(
           Math.random() * 1000000000000
         ).toString()}.${imageExtension}`;
-        const filepath = path.join(os.tmpdir(), imageFileName);
+
+        const filepath = path.join(os.tmpDir(), imageFileName);
+        console.log(filepath);
         imageToBeUploaded = { filepath, mimetype };
+
         file.pipe(fs.createWriteStream(filepath));
       });
-      busboy.on("finish", () => {
-        admin
+
+      console.log(imageFileName);
+      //   /////////////////////////////////////////////////////////////////
+      busboy.on("finish", async () => {
+        await admin
           .storage()
           .bucket()
           .upload(imageToBeUploaded.filepath, {
@@ -44,23 +50,15 @@ module.exports = app => {
                 contentType: imageToBeUploaded.mimetype
               }
             }
-          })
-          .then(() => {
-            const imageUrl = `https://firebasestorage.googleapis.com/v0/b/${
-              keys.storageBucket
-            }/o/${imageFileName}?alt=media`;
-            const addImg = { imageUrl };
-            return database.collection("Images").add(addImg);
-          })
-          .then(() => {
-            return res.json({ message: "image uploaded successfully" });
-          })
-          .catch(err => {
-            console.error(err);
-            return res.status(500).json({ error: "something went wrong" });
           });
+        const imageUrl = `https://firebasestorage.googleapis.com/v0/b/${
+          keys.storageBucket
+        }/o/${imageFileName}?alt=media`;
+        const addImg = { imageUrl };
+        await database.collection("Images").add(addImg);
       });
       busboy.end(req.rawBody);
+      return res.json({ message: "image uploaded successfully" });
     } catch (err) {
       console.log(err);
     }

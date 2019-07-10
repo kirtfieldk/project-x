@@ -3,6 +3,7 @@ const functions = require("firebase-functions");
 const app = require("express")();
 
 keys = require("./Config/keys");
+require("./Config/admin");
 
 firebase.initializeApp(keys);
 
