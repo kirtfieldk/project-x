@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import * as actions from "./Actions";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import { useEffect } from "react";
@@ -11,7 +13,13 @@ import About from "./Components/About";
 import Post from "./Components/Post";
 import Nav from "./Components/Nav";
 
-const App = () => {
+const App = props => {
+  console.log(props);
+  useEffect(() => {
+    props.fetchBlogpost();
+    props.fetchOutsource();
+    props.fetchPodcast();
+  }, [props]);
   return (
     <Router>
       <Nav />
@@ -26,4 +34,7 @@ const App = () => {
   );
 };
 
-export default App;
+export default connect(
+  null,
+  actions
+)(App);

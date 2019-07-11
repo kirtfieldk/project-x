@@ -3,7 +3,7 @@ const auth = require("../Helper/auth");
 const isEmpty = require("../Helper/isEmpty");
 module.exports = app => {
   // recieving Links
-  app.get("/outsourcelinks", auth, async (req, res) => {
+  app.get("/outsourcelinks", async (req, res) => {
     try {
       let links = [];
       const favBlogs = await database.collection("OutSource").get();

@@ -5,7 +5,7 @@ export const fetchImgs = () => async dispatch => {
   dispatch({ type: "FETCH_IMG", payload: response.data });
 };
 // Blogpost types
-export const fetchBlogPost = () => async dispatch => {
+export const fetchBlogpost = () => async dispatch => {
   const response = await axios.get("/blogpost");
   dispatch({ type: "FETCH_BLOGPOST", payload: response.data });
 };
@@ -14,7 +14,7 @@ export const selectBlogpost = value => async dispatch => {
   const response = await axios.get(`/blogpost/${value}`);
   dispatch({ type: "SELECTED_BLOGPOST", payload: response.data });
 };
-export const addBlogPost = value => async dispatch => {
+export const addBlogpost = value => async dispatch => {
   const response = await axios.post("/blogpost", value);
   dispatch({ type: "FETCH_BLOGPOST", payload: response.data });
 };
@@ -27,7 +27,7 @@ export const deleteBlogPost = value => async dispatch => {
 // Outsource types
 export const fetchOutsource = () => async dispatch => {
   const response = await axios.get("/outsourcelinks");
-  dispatch({ type: "FETCH_OUTSOURCE", payload: response.data() });
+  dispatch({ type: "FETCH_OUTSOURCE", payload: response.data });
 };
 
 export const addOutsource = value => async dispatch => {
@@ -36,7 +36,7 @@ export const addOutsource = value => async dispatch => {
 };
 
 export const deleteOutsource = value => async dispatch => {
-  const response = await axios.delete(`/blogpost/${value}`);
+  const response = await axios.delete(`/outsoucelink/${value}`);
   dispatch({ type: "DELETE_BLOGPOST", payload: response.data });
 };
 
@@ -62,3 +62,4 @@ export const signIn = value => async dispatch => {
   const response = await axios.post("/login", value);
   dispatch({ type: "LOGIN", payload: response.data });
 };
+// Newsletter

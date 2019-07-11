@@ -1,11 +1,9 @@
-import React from 'react'
-
+import React from "react";
+import { connect } from "react-redux";
 function Post() {
-    return (
-        <div>
-            
-        </div>
-    )
+  return <div />;
 }
-
-export default Post
+const mapStateToProps = state => {
+  console.log(state);
+};
+export default connect(mapStateToProps)(Post);

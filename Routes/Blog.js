@@ -3,7 +3,7 @@ const isEmpty = require("../Helper/isEmpty");
 const { database } = require("../Config/admin");
 module.exports = app => {
   // Retrieving list of post
-  app.get("/blogpost", auth, async (req, res) => {
+  app.get("/blogpost", async (req, res) => {
     try {
       let blogArray = [];
       const blogs = await database.collection("Blog-post").get();
@@ -21,7 +21,7 @@ module.exports = app => {
     }
   });
   // Posting blogPost
-  app.post("/blogpost", auth, async (req, res) => {
+  app.post("/blogpost", async (req, res) => {
     try {
       let error = [];
       const { author, body, blogImg, title } = req.body;

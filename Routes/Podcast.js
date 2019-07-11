@@ -1,7 +1,7 @@
 const auth = require("../Helper/auth");
 const { database } = require("../Config/admin");
 module.exports = app => {
-  app.get("/podcast", auth, async (req, res) => {
+  app.get("/podcast", async (req, res) => {
     try {
       let podcastList = [];
       const podcasts = await database.collection("Podcast").get();
