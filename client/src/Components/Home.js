@@ -3,7 +3,7 @@ import React from "react";
 function Home() {
   return (
     <div>
-      <div className="col-7 body-box mt-3">
+      <div className="col-7 body-box mt-3 shadow">
         <div className="title">Project-x</div>
         <div className="body">
           <div className="row">

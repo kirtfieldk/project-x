@@ -10,13 +10,17 @@ export const fetchBlogPost = () => async dispatch => {
   dispatch({ type: "FETCH_BLOGPOST", payload: response.data });
 };
 
+export const selectBlogpost = value => async dispatch => {
+  const response = await axios.get(`/blogpost/${value}`);
+  dispatch({ type: "SELECTED_BLOGPOST", payload: response.data });
+};
 export const addBlogPost = value => async dispatch => {
   const response = await axios.post("/blogpost", value);
   dispatch({ type: "FETCH_BLOGPOST", payload: response.data });
 };
 
 export const deleteBlogPost = value => async dispatch => {
-  const response = await axios.delete(`/blogpost/${value}`);
+  const response = await axios.delete(`/blogpost/delete/${value}`);
   dispatch({ type: "DELETE_BLOGPOST", payload: response.data });
 };
 

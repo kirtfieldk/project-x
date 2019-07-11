@@ -1,0 +1,17 @@
+.full-screen {
+    position: absolute;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+}
+.bg-star {
+  background-image: url("../Images/rock-bg.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+.bg-trans {
+  background-color: rgba(255, 255, 225, 0.2);
+  color: black;
+  font-weight: bolder;
+}
