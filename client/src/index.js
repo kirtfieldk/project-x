@@ -8,6 +8,7 @@ import reduxThunk from "redux-thunk";
 
 // IMPORT STYLE
 import "./Style/nave.css";
+import "./Style/homepage.css";
 
 // IMPORT REDUCERS
 import reducers from "./Reducers";

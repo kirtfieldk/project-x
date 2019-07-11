@@ -1,7 +1,12 @@
-import React from "react";
+import { combineReducers } from "redux";
 
-function index() {
-  return <div />;
-}
-
-export default index;
+export default combineReducers({
+  podcastList,
+  blogPostList,
+  seletectBlogpost,
+  signIn,
+  imageList,
+  selectedImg,
+  listLinkRead,
+  researchBlogpostList
+});

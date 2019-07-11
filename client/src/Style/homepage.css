@@ -1,0 +1,11 @@
+.body-box {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.title {
+  text-align: center;
+  font-size: 1.4rem;
+}
+.body{
+    margin-left: 5px;
+     
+}

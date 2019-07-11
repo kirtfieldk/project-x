@@ -34,7 +34,7 @@ module.exports = app => {
         author,
         title,
         blogImg,
-        title,
+        body,
         dateAdded: new Date().toISOString()
       };
       await database.collection("Blog-post").add(newPost);
@@ -44,8 +44,20 @@ module.exports = app => {
       res.status(400).json({ err });
     }
   });
+  // Retrieving specific blofPost
+  app.get("/blogpost/:id", async (req, res) => {
+    try {
+      let blogArray = [];
+      const blogpost = await database.doc(`Blog-post/${req.params.id}`).get();
+      console.log(blogpost.data());
+      return res.status(200).json(blogArray);
+    } catch (err) {
+      console.log(err);
+      return res.status(404).json({ err });
+    }
+  });
   // Deleting Post
-  app.delete("/blogpost/:id", auth, async (req, res) => {
+  app.delete("/blogpost/delete/:id", auth, async (req, res) => {
     try {
       const postDelete = await database.doc(`Blog-post/${req.params.id}`).get();
       console.log(postDelete.exists);
