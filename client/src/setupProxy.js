@@ -12,7 +12,8 @@ module.exports = function(app) {
         "/outsourcelinks/:id",
         "/podcast",
         "/podcast/:id",
-        "login"
+        "/newsletter",
+        "/login"
       ],
       {
         target: "http://localhost:5000/project-x-ba483/us-central1/api"

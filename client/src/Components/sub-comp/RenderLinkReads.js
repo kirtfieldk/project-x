@@ -9,9 +9,16 @@ const RenderLinkReads = ({ listLinkRead }) => {
     } else {
       return listLinkRead.map(doc => {
         return (
-          <div className="border-bottom mt-3" key={doc.values.title}>
-            <h5>{doc.values.title}</h5>
-            <p className="font-weight-lighter light mt-neg-5">{doc.values.desc}</p>
+          <div
+            className="border-bottom hover-change mt-3"
+            key={doc.values.title}
+          >
+            <a href={doc.values.link} target="_target">
+              <h5>{doc.values.title}</h5>
+            </a>
+            <p className="font-weight-lighter light mt-neg-5">
+              {doc.values.desc}
+            </p>
           </div>
         );
       });
@@ -19,9 +26,6 @@ const RenderLinkReads = ({ listLinkRead }) => {
   };
 
   const renderDisplay = () => {
-    // if (displayList === false) {
-    //   return <div className="ml-3 mt-3  border-bottom">LOADING</div>;
-    // }
     return (
       <div className=" mt-3">
         <div>{renderList()}</div>
@@ -31,6 +35,10 @@ const RenderLinkReads = ({ listLinkRead }) => {
   useEffect(() => {
     if (listLinkRead.length > 0) setDisplayList(true);
   }, [listLinkRead]);
+
+
+
+  // FINAL RETURN
   return <div>{renderDisplay()}</div>;
 };
 

@@ -4,7 +4,7 @@ module.exports = app => {
   // Adding a email to newsletter
 
   // getting all users
-  app.get("/newsletter", async (req, res) => {
+  app.get("/newsletter", auth, async (req, res) => {
     try {
       let newsletterArray = [];
       const response = await database
@@ -22,7 +22,7 @@ module.exports = app => {
     }
   });
   //adding email address
-  app.post("/newsletter", auth, async (req, res) => {
+  app.post("/newsletter", async (req, res) => {
     try {
       const { email } = req.body;
       if (email.trim() === "") {

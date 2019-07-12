@@ -63,3 +63,6 @@ export const signIn = value => async dispatch => {
   dispatch({ type: "LOGIN", payload: response.data });
 };
 // Newsletter
+export const SubmitNewsletter = (value) => async dispatch =>{
+  const response = await axios.post("/newsletter", value)
+}

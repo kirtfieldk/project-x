@@ -12,6 +12,7 @@ import Article from "./Components/Article";
 import About from "./Components/About";
 import Post from "./Components/Post";
 import Nav from "./Components/Nav";
+import Footer from "./Components/Footer"
 
 const App = props => {
   console.log(props);
@@ -30,6 +31,7 @@ const App = props => {
         <Route path="/about" component={About} />
         <Route path="/article/:id" component={Article} />
       </Switch>
+      <Footer />
     </Router>
   );
 };

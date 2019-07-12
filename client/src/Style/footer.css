@@ -1,0 +1,14 @@
+.social {
+  font-weight: bolder;
+}
+.footer {
+  background-color: black;
+  color: white;
+}
+.fab {
+  text-align: center;
+}
+.fab:hover {
+  color: green;
+  text-decoration: underline;
+}

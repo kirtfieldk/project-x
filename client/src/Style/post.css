@@ -2,3 +2,10 @@
   padding: 10px;
   text-align: center;
 }
+.hover-change {
+  cursor: pointer;
+}
+h5:hover {
+  color: green;
+  text-decoration: underline;
+}
