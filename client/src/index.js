@@ -10,6 +10,7 @@ import reduxThunk from "redux-thunk";
 import "./Style/nave.css";
 import "./Style/homepage.css";
 import "./Style/contact.css";
+import "./Style/post.css";
 // IMPORT REDUCERS
 import reducers from "./Reducers";
 

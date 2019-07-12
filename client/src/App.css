@@ -37,7 +37,16 @@ body {
 .white {
   color: white;
 }
-.spacer{
+.spacer {
   width: 100%;
   height: 20px;
+}
+.height-60 {
+  height: 60vh;
+}
+.light {
+  color: rgba(122, 120, 120, 0.794);
+}
+.mt-neg-5 {
+  margin-top: -9px;
 }
