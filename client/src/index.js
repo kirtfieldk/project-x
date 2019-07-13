@@ -12,6 +12,7 @@ import "./Style/homepage.css";
 import "./Style/contact.css";
 import "./Style/post.css";
 import "./Style/footer.css";
+import "./Style/about.css";
 // IMPORT REDUCERS
 import reducers from "./Reducers";
 

@@ -1,0 +1,13 @@
+.tree-img {
+  background-image: url("../Images/tree.jpg");
+  height: 95vh;
+  background-position: center;
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  opacity: .76;
+  border-radius: 0 25px 25px 0;
+}
+.founder-title {
+  font-size: 2rem;
+  font-weight: bolder;
+}

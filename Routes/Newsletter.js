@@ -24,9 +24,15 @@ module.exports = app => {
   //adding email address
   app.post("/newsletter", async (req, res) => {
     try {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       const { email } = req.body;
+      const isValid = re.test(String(email).toLowerCase());
+
+      if (isValid == false) {
+        return res.json({ msg: "Not a valid email" });
+      }
       if (email.trim() === "") {
-        return res.status(400).json({ msg: "email cannot be empty" });
+        return res.json({ msg: "Email cannot be empty" });
       }
       const newEmail = {
         email,

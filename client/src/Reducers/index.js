@@ -8,6 +8,7 @@ import signIn from "./signin";
 import imageList from "./imageList";
 import selectedImg from "./selectedImg";
 import listLinkRead from "./listLinkRead";
+import newsletter from "./newsletter";
 
 export default combineReducers({
   podcastList,
@@ -17,5 +18,6 @@ export default combineReducers({
   imageList,
   selectedImg,
   listLinkRead,
+  newsletter,
   form: formReducer
 });
