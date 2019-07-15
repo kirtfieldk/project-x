@@ -16,7 +16,7 @@ module.exports = function(app) {
         "/login"
       ],
       {
-        target: "http://localhost:5000/project-x-ba483/us-central1/api"
+        target: "http://localhost:5001/project-x-ba483/us-central1/api"
       }
     )
   );

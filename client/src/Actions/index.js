@@ -36,7 +36,7 @@ export const addOutsource = value => async dispatch => {
 };
 
 export const deleteOutsource = value => async dispatch => {
-  const response = await axios.delete(`/outsoucelink/${value}`);
+  const response = await axios.delete(`/outsourcelinks/${value}`);
   dispatch({ type: "DELETE_BLOGPOST", payload: response.data });
 };
 
@@ -58,8 +58,10 @@ export const deletePodcast = value => async dispatch => {
 };
 
 // SIGN IN
-export const signIn = value => async dispatch => {
+export const logIn = value => async dispatch => {
   const response = await axios.post("/login", value);
+  localStorage.setItem(`adminToken`, `Bearer ${response.data.token}`);
+
   dispatch({ type: "LOGIN", payload: response.data });
 };
 // Newsletter

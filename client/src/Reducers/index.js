@@ -4,7 +4,7 @@ import { reducer as formReducer } from "redux-form";
 import podcastList from "./podcastList";
 import blogpostList from "./blogPostList";
 import selectBlogpost from "./selectBlogpost";
-import signIn from "./signin";
+import loginToken from "./LoginToken";
 import imageList from "./imageList";
 import selectedImg from "./selectedImg";
 import listLinkRead from "./listLinkRead";
@@ -14,7 +14,7 @@ export default combineReducers({
   podcastList,
   blogpostList,
   selectBlogpost,
-  signIn,
+  loginToken,
   imageList,
   selectedImg,
   listLinkRead,

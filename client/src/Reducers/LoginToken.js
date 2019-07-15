@@ -1,5 +1,5 @@
 export default function(state = false, action) {
-  switch (action.payload) {
+  switch (action.type) {
     case "LOGIN":
       return action.payload;
     default:

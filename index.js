@@ -1,12 +1,13 @@
 const firebase = require("firebase");
 const functions = require("firebase-functions");
 const app = require("express")();
-
-keys = require("./Config/keys");
+const cors = require("cors");
+const keys = require("./Config/keys");
 require("./Config/admin");
 
 firebase.initializeApp(keys);
 
+app.use(cors());
 // Routes
 require("./Routes/Blog")(app);
 require("./Routes/Podcast")(app);
