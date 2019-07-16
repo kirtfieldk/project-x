@@ -59,3 +59,6 @@ a {
 .green {
   color: geen;
 }
+.select:hover {
+  background-color: lightgray;
+}

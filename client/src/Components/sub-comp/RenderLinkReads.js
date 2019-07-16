@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { deleteBlogPost } from "../../Actions";
-
+import PopupDelete from "../sub-comp/PopupDelete";
 import * as actions from "../../Actions";
 
 const RenderLinkReads = ({ listLinkRead, deleteProp, deleteOutsource }) => {
   const [displayList, setDisplayList] = useState(false);
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [id, setId] = useState("");
+  const [popUp, showPopUp] = useState(false);
 
-  const deleteBlogPost = value => {
-    deleteOutsource(value);
+  const deleteBlogPost = () => {
+    deleteOutsource(id);
   };
   const renderList = () => {
     if (!displayList) {
@@ -20,7 +23,12 @@ const RenderLinkReads = ({ listLinkRead, deleteProp, deleteOutsource }) => {
           return (
             <div className="border-bottom hover-change mt-3" key={doc.id}>
               <button
-                onClick={() => deleteBlogPost(doc.id)}
+                onClick={() => {
+                  setTitle(doc.values.title);
+                  setDesc(doc.values.desc);
+                  setId(doc.id);
+                  showPopUp(true);
+                }}
                 type="button"
                 className="close float-right"
                 aria-label="Close"
@@ -49,20 +57,25 @@ const RenderLinkReads = ({ listLinkRead, deleteProp, deleteOutsource }) => {
       });
     }
   };
-
-  const renderDisplay = () => {
-    return (
-      <div className=" mt-3">
-        <div>{renderList()}</div>
-      </div>
-    );
+  const showModel = () => {
+    if (popUp) {
+      return (
+        <PopupDelete title={title} desc={desc} deleteFun={deleteBlogPost} />
+      );
+    }
   };
+
   useEffect(() => {
-    if (listLinkRead.length > 0) setDisplayList(true);
-  }, [listLinkRead]);
+    if (listLinkRead.length > 0) setDisplayList(!displayList);
+  }, [listLinkRead.length]);
 
   // FINAL RETURN
-  return <div>{renderDisplay()}</div>;
+  return (
+    <div>
+      {renderList()}
+      <span className="ml-5 float-right">{showModel()}</span>
+    </div>
+  );
 };
 
 const mapStateToProps = ({ listLinkRead }) => {

@@ -6,7 +6,7 @@ module.exports = app => {
   app.get("/outsourcelinks", async (req, res) => {
     try {
       let links = [];
-      const favBlogs = await database.collection("OutSource").get();
+      const favBlogs = await database.collection("Outsource").get();
       favBlogs.forEach(doc => {
         const data = {
           values: doc.data(),
@@ -34,7 +34,7 @@ module.exports = app => {
         link,
         title,
         desc,
-        data: new Date().toISOString()
+        dateAdded: new Date().toISOString()
       };
       await database.collection("OutSource").add(newPost);
       return res.status(200).json(newPost);
@@ -46,10 +46,10 @@ module.exports = app => {
   //   Deleting a Link
   app.delete("/outsourcelinks/:id", async (req, res) => {
     try {
-      const link = await database.doc(`OutSource/${req.params.id}`).get();
+      const link = await database.doc(`Outsource/${req.params.id}`).get();
       if (link == "undefined")
         return res.status(404).json({ msg: "Link not found" });
-      await database.doc(`OutSource/${req.params.id}`).delete();
+      await database.doc(`Outsource/${req.params.id}`).delete();
       return res.status(200).json({ msg: `${req.params.id} deleted` });
     } catch (err) {
       console.log(err);

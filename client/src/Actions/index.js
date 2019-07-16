@@ -69,3 +69,7 @@ export const SubmitNewsletter = value => async dispatch => {
   const response = await axios.post("/newsletter", value);
   dispatch({ type: "NEWSLETTER", payload: response.data });
 };
+export const deleteNewsLetter = value => async dispatch => {
+  const response = await axios.delete(`/newsletter/${value}`);
+  dispatch({ type: "DELETE_NEWSLETTER", payload: response.data });
+};
