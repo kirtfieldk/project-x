@@ -24,13 +24,14 @@ module.exports = app => {
   app.post("/blogpost", async (req, res) => {
     try {
       let error = [];
-      const { author, body, blogImg, title } = req.body;
+      const { author, body, blogImg, title, desc } = req.body;
       if (isEmpty(author)) error.push("Author required");
       if (isEmpty(body)) error.push("Blog must have content");
       if (isEmpty(title)) error.push("Blog mush have a title");
       if (isEmpty(blogImg)) error.push("Blog must have an image");
       if (error.length > 0) return res.send(error);
       const newPost = {
+        desc,
         author,
         title,
         blogImg,
@@ -57,7 +58,7 @@ module.exports = app => {
     }
   });
   // Deleting Post
-  app.delete("/blogpost/delete/:id", auth, async (req, res) => {
+  app.delete("/blogpost/delete/:id", async (req, res) => {
     try {
       const postDelete = await database.doc(`Blog-post/${req.params.id}`).get();
       console.log(postDelete.exists);

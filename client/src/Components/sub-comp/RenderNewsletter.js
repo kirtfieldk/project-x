@@ -1,43 +1,53 @@
 import React from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import * as actions from "../../Actions";
 
-const RenderNewsletter = ({ deleteNewsletter, newsletter }) => {
+const RenderNewsletter = ({ deleteNewsletter, newsletter, getNewsletter }) => {
   const deletePost = async value => {
     await axios.delete(`/newsletter/${value}`);
+    getNewsletter();
   };
-  return newsletter.map(doc => {
-    if (deleteNewsletter) {
-      return (
-        <div className="border-bottom hover-change mt-3" key={doc.id}>
-          <button
-            onClick={() => deleteBlogPost(doc.id)}
-            type="button"
-            className="close float-right"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <a href={doc.values.link} target="_target">
-            <h5>{doc.values.title}</h5>
-          </a>
-          <p className="font-weight-lighter light mt-neg-5">
-            {doc.values.desc}
-          </p>
-        </div>
-      );
+  const renderList = () => {
+    if (newsletter === null) {
+      return <div>Loading</div>;
+    } else {
+      return newsletter.map(doc => {
+        if (deleteNewsletter) {
+          return (
+            <div className="border-bottom hover-change mt-3" key={doc.id}>
+              <button
+                onClick={() => deletePost(doc.id)}
+                type="button"
+                className="close float-right"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h5>{doc.values.email}</h5>
+            </div>
+          );
+        }
+        return (
+          <div className="border-bottom hover-change mt-3" key={doc.id}>
+            <h5>{doc.value.email}</h5>
+          </div>
+        );
+      });
     }
-    return (
-      <div className="border-bottom hover-change mt-3" key={doc.id}>
-        <a href={doc.values.link} target="_target">
-          <h5>{doc.values.title}</h5>
-        </a>
-        <p className="font-weight-lighter light mt-neg-5">{doc.values.desc}</p>
-      </div>
-    );
-  });
+  };
+  return (
+    <div className="ml-3">
+      <div className="title mt-3">Newsletter Signups</div>
+      {renderList()}
+    </div>
+  );
 };
+
 const mapStateToProps = ({ newsletter }) => {
   return { newsletter };
 };
-export default connect(mapStateToProps)(RenderNewsletter);
+export default connect(
+  mapStateToProps,
+  actions
+)(RenderNewsletter);

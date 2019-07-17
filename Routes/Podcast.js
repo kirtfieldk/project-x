@@ -7,7 +7,11 @@ module.exports = app => {
       const podcasts = await database.collection("Podcast").get();
 
       podcasts.forEach(pod => {
-        podcastList.push(pod.data());
+        const data = {
+          values: pod.data(),
+          id: pod.id
+        };
+        podcastList.push(data);
       });
       res.send(podcastList);
     } catch (err) {
@@ -19,11 +23,12 @@ module.exports = app => {
 
   app.post("/podcast", auth, async (req, res) => {
     try {
-      const { desc, link, title } = req.body;
+      const { desc, link, title, imgUrl } = req.body;
       const podcast = {
         desc,
         link,
         title,
+        imgUrl,
         dateAdded: new Date().toISOString()
       };
       await database.collection("Podcast").add(podcast);
@@ -33,9 +38,21 @@ module.exports = app => {
       return res.status(500).json({ err: err.code });
     }
   });
+  // Selected Podcast
+  app.get("/podcast/:id", async (req, res) => {
+    try {
+      const response = await database.doc(`Podcast/${req.params.id}`).get();
+      console.log(response.data());
+      if (response.data().exists)
+        return res.status(404).json({ msg: "Post not found" });
+      return res.status(200).json(response.data());
+    } catch (err) {
+      return res.status(400).json({ err: err.code });
+    }
+  });
 
   // Deleteing a podcast
-  app.delete("/podcast/:postId", auth, async (req, res) => {
+  app.delete("/podcast/delete/:postId", async (req, res) => {
     try {
       const response = await database.doc(`Podcast/${req.params.postId}`).get();
       const title = response.data().title;

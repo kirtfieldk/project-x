@@ -1,51 +1,27 @@
-import React, { useState } from "react";
-import RenderLinkRead from "../sub-comp/RenderLinkReads";
+import React from "react";
+import { Link } from "react-router-dom";
 const AdminScreen = () => {
-  const [display, setDisplay] = useState("outsource");
   return (
-    <div className="container bg-light rounded shadow mt-3">
+    <div className="col-2 h-50 ml-5 bg-light rounded shadow mt-3">
       <h3 className="text-center">Admin Page</h3>
       <div className="row">
-        <div className="col-3">
-          <div
-            className="col-12 pt-3 border-bottom select"
-            onCLick={() => setDisplay("blogpost")}
-          >
-            Blog Post
-          </div>
-          <div
-            className="col-12 pt-3 border-bottom select"
-            onCLick={() => setDisplay("podcast")}
-          >
-            Podcasts
-          </div>
-          <div
-            className="col-12 pt-3 border-bottom select"
-            onCLick={() => setDisplay("favPodcast")}
-          >
-            Favorite Podcast
-          </div>
-          <div
-            className="col-12 pt-3 border-bottom select"
-            onCLick={() => setDisplay("linkReads")}
-          >
-            Link Reads
-          </div>
-          <div
-            className="col-12 pt-3 border-bottom select"
-            onCLick={() => setDisplay("images")}
-          >
-            Images
-          </div>
-          <div
-            className="col-12 pt-3 border-bottom select"
-            onCLick={() => setDisplay("newletter")}
-          >
-            Newsletter
-          </div>
+        <div className="col-12 pt-3 border-bottom select">
+          <Link to="/admin/blogpost">Blog Post</Link>
         </div>
-        <div className=" col-5">
-          <RenderLinkRead deleteProp="true" />
+        <div className="col-12 pt-3 border-bottom select">
+          <Link to="/admin/podcast">Podcasts</Link>
+        </div>
+        <div className="col-12 pt-3 border-bottom select">
+          <Link to="/admin/podcast">Favorite Podcast</Link>
+        </div>
+        <div className="col-12 pt-3 border-bottom select">
+          <Link to="/admin/outsource">Link Reads</Link>
+        </div>
+        <div className="col-12 pt-3 border-bottom select">
+          <Link to="/admin/images">Images</Link>
+        </div>
+        <div className="col-12 pt-3 border-bottom select">
+          <Link to="/admin/newsletter">Newsletter</Link>
         </div>
       </div>
     </div>

@@ -13,6 +13,7 @@ module.exports = function(app) {
         "/podcast",
         "/podcast/:id",
         "/newsletter",
+        "/newsletter/:id",
         "/login"
       ],
       {

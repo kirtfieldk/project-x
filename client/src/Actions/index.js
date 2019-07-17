@@ -53,8 +53,12 @@ export const addPodcast = value => async dispatch => {
 };
 
 export const deletePodcast = value => async dispatch => {
-  const response = await axios.delete(`/podcast/${value}`);
+  const response = await axios.delete(`/podcast/delete/${value}`);
   dispatch({ type: "DELETE_PODCAST", payload: response.data });
+};
+export const selectPodcast = value => async dispatch => {
+  const response = await axios.get(`podcast/${value}`);
+  dispatch({ type: "SELECT_PODCAST", payload: response.data });
 };
 
 // SIGN IN
@@ -67,6 +71,10 @@ export const logIn = value => async dispatch => {
 // Newsletter
 export const SubmitNewsletter = value => async dispatch => {
   const response = await axios.post("/newsletter", value);
+  dispatch({ type: "SUBMIT_NEWSLETTER", payload: response.data });
+};
+export const getNewsletter = () => async dispatch => {
+  const response = await axios.get("/newsletter");
   dispatch({ type: "NEWSLETTER", payload: response.data });
 };
 export const deleteNewsLetter = value => async dispatch => {

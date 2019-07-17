@@ -1,24 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import PopupDelete from "../sub-comp/PopupDelete";
 import * as actions from "../../Actions";
+import axios from "axios";
 
-const RenderLinkReads = ({ listLinkRead, deleteProp, deleteOutsource }) => {
-  const [displayList, setDisplayList] = useState(false);
+const RenderLinkReads = ({ listLinkRead, deleteProp, fetchOutsource }) => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [id, setId] = useState("");
   const [popUp, showPopUp] = useState(false);
 
-  const deleteBlogPost = () => {
-    deleteOutsource(id);
+  const deleteBlogPost = async () => {
+    await axios.delete(`/outsourcelinks/${id}`);
+    fetchOutsource();
+    showPopUp(false);
   };
   const renderList = () => {
-    if (!displayList) {
+    if (listLinkRead.length === 0) {
       return <div className="border-bottom">Loading</div>;
     } else {
       return listLinkRead.map(doc => {
-        console.log(doc.id);
         if (deleteProp) {
           return (
             <div className="border-bottom hover-change mt-3" key={doc.id}>
@@ -64,10 +65,6 @@ const RenderLinkReads = ({ listLinkRead, deleteProp, deleteOutsource }) => {
       );
     }
   };
-
-  useEffect(() => {
-    if (listLinkRead.length > 0) setDisplayList(!displayList);
-  }, [listLinkRead.length]);
 
   // FINAL RETURN
   return (

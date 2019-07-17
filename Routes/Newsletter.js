@@ -4,7 +4,7 @@ module.exports = app => {
   // Adding a email to newsletter
 
   // getting all users
-  app.get("/newsletter", auth, async (req, res) => {
+  app.get("/newsletter", async (req, res) => {
     try {
       let newsletterArray = [];
       const response = await database
@@ -12,9 +12,12 @@ module.exports = app => {
         .orderBy("dateAdded", "desc")
         .get();
       response.forEach(doc => {
-        newsletterArray.push(doc.data());
+        const data = {
+          values: doc.data(),
+          id: doc.id
+        };
+        newsletterArray.push(data);
       });
-      console.log(newsletterArray);
       return res.json(newsletterArray);
     } catch (err) {
       console.log(err);
@@ -25,7 +28,7 @@ module.exports = app => {
   app.post("/newsletter", async (req, res) => {
     try {
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      const { email } = req.body;
+      const { email, name } = req.body;
       const isValid = re.test(String(email).toLowerCase());
 
       if (isValid == false) {
@@ -34,8 +37,12 @@ module.exports = app => {
       if (email.trim() === "") {
         return res.json({ msg: "Email cannot be empty" });
       }
+      if (name.trim() === "") {
+        return res.json({ msg: "Email cannot be empty" });
+      }
       const newEmail = {
         email,
+        name,
         dateAdded: new Date().toISOString()
       };
       const repeatEmail = await database
@@ -55,7 +62,7 @@ module.exports = app => {
     }
   });
   // Deleting an email address
-  app.delete("/newsletter/:id", auth, async (req, res) => {
+  app.delete("/newsletter/:id", async (req, res) => {
     try {
       const email = await database.doc(`Newsletter/${req.params.id}`).get();
       if (!email.exists)

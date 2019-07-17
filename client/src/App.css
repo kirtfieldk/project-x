@@ -58,7 +58,15 @@ a {
 }
 .green {
   color: geen;
+  border-color: green;
 }
 .select:hover {
   background-color: lightgray;
+}
+.red {
+  color: red;
+  border-color: red;
+}
+.small {
+  font-size: 0.5rem;
 }

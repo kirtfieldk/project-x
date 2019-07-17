@@ -96,13 +96,11 @@ const Footer = props => {
     );
   };
 
-  return <div className=" footer mt-5 ">{renderFooter()}</div>;
+  return <div className=" footer mt-5 sticky-bottom">{renderFooter()}</div>;
 };
 
-const mapStateToProps = ({ newsletter }) => {
-  return { newsletter };
-};
+
 export default connect(
-  mapStateToProps,
+  null,
   actions
 )(Footer);
