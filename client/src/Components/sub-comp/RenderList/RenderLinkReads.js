@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import PopupDelete from "../sub-comp/PopupDelete";
-import * as actions from "../../Actions";
+import PopupDelete from "../PopupDelete";
+import * as actions from "../../../Actions";
 import axios from "axios";
 
 const RenderLinkReads = ({ listLinkRead, deleteProp, fetchOutsource }) => {
@@ -22,7 +22,7 @@ const RenderLinkReads = ({ listLinkRead, deleteProp, fetchOutsource }) => {
       return listLinkRead.map(doc => {
         if (deleteProp) {
           return (
-            <div className="border-bottom hover-change mt-3" key={doc.id}>
+            <div className="border-bottom hover-change ml-3 mt-3" key={doc.id}>
               <button
                 onClick={() => {
                   setTitle(doc.values.title);

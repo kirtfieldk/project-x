@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import * as actions from "../../Actions";
+import * as actions from "../../../Actions";
 
 const RenderNewsletter = ({ deleteNewsletter, newsletter, getNewsletter }) => {
   const deletePost = async value => {
@@ -38,7 +38,6 @@ const RenderNewsletter = ({ deleteNewsletter, newsletter, getNewsletter }) => {
   };
   return (
     <div className="ml-3">
-      <div className="title mt-3">Newsletter Signups</div>
       {renderList()}
     </div>
   );

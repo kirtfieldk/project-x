@@ -44,11 +44,13 @@ export const deleteOutsource = value => async dispatch => {
 
 export const fetchPodcast = () => async dispatch => {
   const response = await axios.get("/podcast");
+  
   dispatch({ type: "FETCH_PODCAST", payload: response.data });
 };
 
 export const addPodcast = value => async dispatch => {
   const response = await axios.post("/podcast", value);
+  console.log(response);
   dispatch({ type: "ADD_PODCAST", payload: response.data });
 };
 

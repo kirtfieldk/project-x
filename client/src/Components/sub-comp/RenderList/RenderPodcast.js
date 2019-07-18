@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as actions from "../../Actions";
+import * as actions from "../../../Actions";
 import Axios from "axios";
+
 const RenderPodcast = ({ podcastList, deletePod, fetchPodcast }) => {
   const deletePost = async id => {
     await Axios.delete(`/podcast/delete/${id}`);
@@ -38,7 +39,6 @@ const RenderPodcast = ({ podcastList, deletePod, fetchPodcast }) => {
   };
   return (
     <div>
-      <div className="title mt-3">Podcast</div>
       {renderPodList()}
     </div>
   );

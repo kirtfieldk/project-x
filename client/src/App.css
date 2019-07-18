@@ -70,3 +70,11 @@ a {
 .small {
   font-size: 0.5rem;
 }
+.border-leftless {
+  border-left-color: black;
+  border-radius: 0;
+}
+.border-rightless {
+  border-right-style: none;
+  border-radius: 0;
+}

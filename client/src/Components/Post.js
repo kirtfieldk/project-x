@@ -1,6 +1,6 @@
 import React from "react";
-import LinkOutsource from "./sub-comp/RenderLinkReads";
-import RenderPodcast from "./sub-comp/RenderPodcast";
+import LinkOutsource from "./sub-comp/RenderList/RenderLinkReads";
+import RenderPodcast from "./sub-comp/RenderList/RenderPodcast";
 function Post() {
   return (
     <>

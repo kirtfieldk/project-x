@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as actions from "../../Actions";
+import * as actions from "../../../Actions";
 import Axios from "axios";
 function RenderBlogpost({ blogpostList, deleteBlogPost, fetchBlogpost }) {
   console.log(blogpostList);
@@ -15,7 +15,7 @@ function RenderBlogpost({ blogpostList, deleteBlogPost, fetchBlogpost }) {
     return blogpostList.map(doc => {
       console.log(doc.id);
       return (
-        <div className="border-bottom hover-change mt-3" key={doc.id}>
+        <div className="border-bottom hover-change ml-3 mt-3" key={doc.id}>
           <button
             onClick={() => {
               deletePost(doc.id);

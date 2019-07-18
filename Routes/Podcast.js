@@ -21,14 +21,15 @@ module.exports = app => {
   });
   //   Adding a podcast
 
-  app.post("/podcast", auth, async (req, res) => {
+  app.post("/podcast", async (req, res) => {
     try {
-      const { desc, link, title, imgUrl } = req.body;
+      const { desc, link, title, imageUrl, author } = req.body;
       const podcast = {
         desc,
         link,
         title,
-        imgUrl,
+        author,
+        imageUrl,
         dateAdded: new Date().toISOString()
       };
       await database.collection("Podcast").add(podcast);
