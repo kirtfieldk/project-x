@@ -36,7 +36,7 @@ module.exports = app => {
         desc,
         dateAdded: new Date().toISOString()
       };
-      await database.collection("OutSource").add(newPost);
+      await database.collection("Outsource").add(newPost);
       return res.status(200).json(newPost);
     } catch (err) {
       console.log(err);
@@ -44,7 +44,7 @@ module.exports = app => {
     }
   });
   //   Deleting a Link
-  app.delete("/outsourcelinks/:id", async (req, res) => {
+  app.delete("/outsourcelinks/:id",auth, async (req, res) => {
     try {
       const link = await database.doc(`Outsource/${req.params.id}`).get();
       if (link == "undefined")

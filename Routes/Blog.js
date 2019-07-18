@@ -21,7 +21,7 @@ module.exports = app => {
     }
   });
   // Posting blogPost
-  app.post("/blogpost", async (req, res) => {
+  app.post("/blogpost", auth, async (req, res) => {
     try {
       let error = [];
       const { author, body, blogImg, title, desc } = req.body;
@@ -58,7 +58,7 @@ module.exports = app => {
     }
   });
   // Deleting Post
-  app.delete("/blogpost/delete/:id", async (req, res) => {
+  app.delete("/blogpost/delete/:id", auth, async (req, res) => {
     try {
       const postDelete = await database.doc(`Blog-post/${req.params.id}`).get();
       console.log(postDelete.exists);

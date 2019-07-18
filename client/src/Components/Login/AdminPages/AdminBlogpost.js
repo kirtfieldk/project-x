@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import RenderBlogpost from "../../sub-comp/RenderList/RenderBlogpost";
 import AddDelete from "../../sub-comp/Add-Delete";
+import AddBlogpost from "../../sub-comp/AppPost/AddBlogpost";
 const AdminBlogpost = () => {
   const [edit, setEdit] = useState(true);
   const [add, setAdd] = useState(false);
@@ -20,7 +21,12 @@ const AdminBlogpost = () => {
           <RenderBlogpost deleteNewsletter="true" />
         </div>
       );
-    } else return <div>Keith</div>;
+    } else
+      return (
+        <div>
+          <AddBlogpost />
+        </div>
+      );
   };
   return (
     <div className="mt-3 bg-light col-8 ml-3">

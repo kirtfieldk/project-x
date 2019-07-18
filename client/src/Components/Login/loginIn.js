@@ -5,19 +5,20 @@ import AdminScreen from "./AdminScreen";
 
 const loginIn = ({ loginToken }) => {
   const renderProfile = () => {
-    // if (loginToken === false)
-    //   return (
-    //     <div>
-    //       <LogininForm />
-    //     </div>
-    //   );
-    // else {
+    if (loginToken === false) {
+      return (
+        <div>
+          <LogininForm />
+        </div>
+      );
+    } else {
       return (
         <div>
           <AdminScreen />
         </div>
       );
-    // }
+      // }
+    }
   };
   return <div>{renderProfile()}</div>;
 };

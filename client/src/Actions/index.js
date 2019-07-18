@@ -16,7 +16,7 @@ export const selectBlogpost = value => async dispatch => {
 };
 export const addBlogpost = value => async dispatch => {
   const response = await axios.post("/blogpost", value);
-  dispatch({ type: "FETCH_BLOGPOST", payload: response.data });
+  dispatch({ type: "ADD_BLOGPOST", payload: response.data });
 };
 
 export const deleteBlogPost = value => async dispatch => {
@@ -44,7 +44,7 @@ export const deleteOutsource = value => async dispatch => {
 
 export const fetchPodcast = () => async dispatch => {
   const response = await axios.get("/podcast");
-  
+
   dispatch({ type: "FETCH_PODCAST", payload: response.data });
 };
 
@@ -66,7 +66,10 @@ export const selectPodcast = value => async dispatch => {
 // SIGN IN
 export const logIn = value => async dispatch => {
   const response = await axios.post("/login", value);
-  localStorage.setItem(`adminToken`, `Bearer ${response.data.token}`);
+  console.log(response.data.token);
+  const adminToken = `Bearer ${response.data.token}`;
+  localStorage.setItem(`adminToken`, adminToken);
+  axios.defaults.headers.common[`Autherization`] = adminToken;
 
   dispatch({ type: "LOGIN", payload: response.data });
 };

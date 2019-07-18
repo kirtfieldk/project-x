@@ -21,7 +21,7 @@ module.exports = app => {
   });
   //   Adding a podcast
 
-  app.post("/podcast", async (req, res) => {
+  app.post("/podcast", auth, async (req, res) => {
     try {
       const { desc, link, title, imageUrl, author } = req.body;
       const podcast = {
@@ -53,7 +53,7 @@ module.exports = app => {
   });
 
   // Deleteing a podcast
-  app.delete("/podcast/delete/:postId", async (req, res) => {
+  app.delete("/podcast/delete/:postId", auth,async (req, res) => {
     try {
       const response = await database.doc(`Podcast/${req.params.postId}`).get();
       const title = response.data().title;

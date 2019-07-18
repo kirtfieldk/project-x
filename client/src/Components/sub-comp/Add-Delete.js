@@ -2,7 +2,7 @@ import React from "react";
 
 const AddDelete = ({ addEdit, addPost }) => {
   return (
-    <div className="mb-3 ml-3">
+    <div className="mb-3 ml-2">
       <button
         className="btn btn-outline-danger border-rightless "
         onClick={addEdit}

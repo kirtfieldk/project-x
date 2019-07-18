@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import RenderNewsletter from "../../sub-comp/RenderList/RenderNewsletter";
 import AddDelete from "../../sub-comp/Add-Delete";
-
+import AddNewsletter from "../../sub-comp/AppPost/AddNewsletter";
 function AdminNewsletter() {
   const [edit, setEdit] = useState(true);
   const [add, setAdd] = useState(false);
-  console.log(edit);
   const addEdit = () => {
     setAdd(false);
     setEdit(true);
@@ -22,7 +21,11 @@ function AdminNewsletter() {
         </div>
       );
     }
-    return <div>Keith</div>;
+    return (
+      <div>
+        <AddNewsletter />
+      </div>
+    );
   };
   return (
     <div className="mt-3 bg-light col-8 ml-3">

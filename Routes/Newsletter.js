@@ -62,7 +62,7 @@ module.exports = app => {
     }
   });
   // Deleting an email address
-  app.delete("/newsletter/:id", async (req, res) => {
+  app.delete("/newsletter/:id", auth, async (req, res) => {
     try {
       const email = await database.doc(`Newsletter/${req.params.id}`).get();
       if (!email.exists)
