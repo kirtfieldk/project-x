@@ -48,12 +48,13 @@ module.exports = app => {
   // Retrieving specific blofPost
   app.get("/blogpost/:id", async (req, res) => {
     try {
-      let blogArray = [];
+      let blogArray = {};
       const blogpost = await database.doc(`Blog-post/${req.params.id}`).get();
       console.log(blogpost.data());
-      return res.status(200).json(blogArray);
+      blogArray.data = blogpost.data();
+      blogArray.id = req.params.id;
+      return res.status(200).json( blogArray );
     } catch (err) {
-      console.log(err);
       return res.status(404).json({ err });
     }
   });
